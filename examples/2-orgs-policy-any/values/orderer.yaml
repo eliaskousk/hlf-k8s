@@ -5,7 +5,7 @@ organization:
   name: MyOrderer
 
 nginx-ingress:
-  enabled: true
+  enabled: false
 
 hlf-peer:
   enabled: false
