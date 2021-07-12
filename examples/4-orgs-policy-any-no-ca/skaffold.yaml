@@ -27,10 +27,10 @@ build:
       docker:
         dockerfile: images/fabric-tools/Dockerfile
 
-    - image: eu.gcr.io/stromasys-projects/fabric-ca-tools
-      context: ../../
-      docker:
-        dockerfile: images/fabric-ca-tools/Dockerfile
+    # - image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+    #   context: ../../
+    #   docker:
+    #     dockerfile: images/fabric-ca-tools/Dockerfile
 
     - image: eu.gcr.io/stromasys-projects/fabric-peer
       context: ../../
@@ -50,7 +50,7 @@ deploy:
           helm: {}
         artifactOverrides:
           fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
-          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          # fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
 
       - name: network-org-1-peer-1
         chartPath: ../../charts/hlf-k8s
@@ -61,7 +61,7 @@ deploy:
           helm: {}
         artifactOverrides:
           fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
-          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          # fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
           hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
       - name: network-org-2-peer-1
@@ -73,7 +73,7 @@ deploy:
           helm: {}
         artifactOverrides:
           fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
-          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          # fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
           hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
       - name: network-org-3-peer-1
@@ -85,7 +85,7 @@ deploy:
           helm: {}
         artifactOverrides:
           fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
-          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          # fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
           hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
       - name: network-org-4-peer-1
@@ -97,11 +97,17 @@ deploy:
           helm: {}
         artifactOverrides:
           fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
-          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          # fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
           hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
   kubectl:
     manifests:
+      - ../secrets/secrets-orderer-genesis.yaml
+      - ../secrets/secrets-orderer.yaml
+      - ../secrets/secrets-org-1.yaml
+      - ../secrets/secrets-org-2.yaml
+      - ../secrets/secrets-org-3.yaml
+      - ../secrets/secrets-org-4.yaml
       - ../serviceAccounts/serviceAccount-orderer.yaml
       - ../serviceAccounts/serviceAccount-org-1.yaml
       - ../serviceAccounts/serviceAccount-org-2.yaml

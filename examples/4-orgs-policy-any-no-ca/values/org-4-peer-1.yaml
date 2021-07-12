@@ -3,6 +3,7 @@ organization:
   name: MyOrg4
 
 hlf-ca:
+  enabled: false
   caName: rcaOrg4
   host: network-org-4-peer-1-hlf-ca.org-4.svc.cluster.local
   orderer:
@@ -76,6 +77,14 @@ enrollments:
 toolbox:
   enabled: true
 
+# hooks:
+#   serviceAccount:
+#     name: substra-delete-hook
+
 hooks:
+  deleteSecrets:
+    enabled: false
+
+  # Name used for chaincode delete secret
   serviceAccount:
     name: substra-delete-hook
