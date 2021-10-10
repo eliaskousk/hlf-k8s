@@ -16,12 +16,12 @@ apiVersion: skaffold/v2beta12
 kind: Config
 build:
   artifacts:
-    - image: substrafoundation/fabric-tools
+    - image: eu.gcr.io/stromasys-projects/fabric-tools
       context: ../../
       docker:
         dockerfile: images/fabric-tools/Dockerfile
 
-    - image: substrafoundation/fabric-peer
+    - image: eu.gcr.io/stromasys-projects/fabric-peer
       context: ../../
       docker:
         dockerfile: images/fabric-peer/Dockerfile
@@ -38,7 +38,7 @@ deploy:
         imageStrategy:
           helm: {}
         artifactOverrides:
-          fabric-tools.image: substrafoundation/fabric-tools
+          fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
 
       - name: network-org-1-peer-1
         chartPath: ../../charts/hlf-k8s
@@ -48,8 +48,8 @@ deploy:
         imageStrategy:
           helm: {}
         artifactOverrides:
-          fabric-tools.image: substrafoundation/fabric-tools
-          hlf-peer.image: substrafoundation/fabric-peer
+          fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
+          hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
       - name: network-org-2-peer-1
         chartPath: ../../charts/hlf-k8s
@@ -59,8 +59,8 @@ deploy:
         imageStrategy:
           helm: {}
         artifactOverrides:
-          fabric-tools.image: substrafoundation/fabric-tools
-          hlf-peer.image: substrafoundation/fabric-peer
+          fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
+          hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
   kubectl:
     manifests:

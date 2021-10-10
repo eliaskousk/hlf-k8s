@@ -16,17 +16,17 @@ apiVersion: skaffold/v2beta12
 kind: Config
 build:
   artifacts:
-    - image: substrafoundation/fabric-tools
+    - image: eu.gcr.io/stromasys-projects/fabric-tools
       context: ../../
       docker:
         dockerfile: images/fabric-tools/Dockerfile
 
-    - image: substrafoundation/fabric-ca-tools
+    - image: eu.gcr.io/stromasys-projects/fabric-ca-tools
       context: ../../
       docker:
         dockerfile: images/fabric-ca-tools/Dockerfile
 
-    - image: substrafoundation/fabric-peer
+    - image: eu.gcr.io/stromasys-projects/fabric-peer
       context: ../../
       docker:
         dockerfile: images/fabric-peer/Dockerfile
@@ -43,8 +43,8 @@ deploy:
         imageStrategy:
           helm: {}
         artifactOverrides:
-          fabric-tools.image: substrafoundation/fabric-tools
-          fabric-ca-tools.image: substrafoundation/fabric-ca-tools
+          fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
+          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
 
       - name: network-org-1-peer-1
         chartPath: ../../charts/hlf-k8s
@@ -54,10 +54,9 @@ deploy:
         imageStrategy:
           helm: {}
         artifactOverrides:
-          fabric-tools.image: substrafoundation/fabric-tools
-          fabric-ca-tools.image: substrafoundation/fabric-ca-tools
-          hlf-peer.image: substrafoundation/fabric-peer
-
+          fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
+          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
       - name: network-org-2-peer-1
         chartPath: ../../charts/hlf-k8s
@@ -67,9 +66,9 @@ deploy:
         imageStrategy:
           helm: {}
         artifactOverrides:
-          fabric-tools.image: substrafoundation/fabric-tools
-          fabric-ca-tools.image: substrafoundation/fabric-ca-tools
-          hlf-peer.image: substrafoundation/fabric-peer
+          fabric-tools.image: eu.gcr.io/stromasys-projects/fabric-tools
+          fabric-ca-tools.image: eu.gcr.io/stromasys-projects/fabric-ca-tools
+          hlf-peer.image: eu.gcr.io/stromasys-projects/fabric-peer
 
   # We create the serviceAccounts with the kubectl deployer to ensure the serviceAccounts will stay present for the Helm deletion hooks
   # By design Skaffold create and delete ressources in a fixed order (Helm > kubectl > kustomize)
